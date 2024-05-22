@@ -22,10 +22,10 @@ module.exports.run = async function ({ api, event, args }) {
   try {
     const prompt = args.join(" ");
     if (!prompt) {
-      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━\n Hello! How can I assist you today ?", event.threadID);
+      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n\n━━━━━━━━━━━\n Hello! How can I assist you today ?", event.threadID);
       return;
     }
-    const response = await axios.get(`https://himachalwale.onrender.com/ask/orochi?prompt=${encodeURIComponent(prompt)}&apikey=himachalwale`);
+    const response = await axios.get(`https://himachalwale.onrender.com/ask/orochi?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`);
     const answer = response.data.answer;
 
     let formattedAnswer = "";

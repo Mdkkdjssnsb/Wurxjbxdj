@@ -25,7 +25,7 @@ module.exports.run = async ({
       lang = targetLanguage || 'tl';
     } else {
       translateThis = content;
-      lang = targetLanguage || 'tl';
+      lang = targetLanguage || 'en';
     }
     return request(encodeURI(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${translateThis}`), (err, response, body) => {
       if (err) return api.sendMessage("An error has occurred!", event.threadID, event.messageID);
@@ -33,7 +33,7 @@ module.exports.run = async ({
       let text = '';
       retrieve[0].forEach(item => (item[0]) ? text += item[0] : '');
       const fromLang = (retrieve[2] === retrieve[8][0][0]) ? retrieve[2] : retrieve[8][0][0];
-      api.sendMessage(`𝐓𝐑𝐀𝐍𝐒[⚙️]: \n﹝${text}﹞\n──────────────────\n⮕𝐓𝐫𝐚𝐧𝐬 𝐟𝐫𝐨𝐦 ${fromLang} 𝐭𝐨 ${lang}`, event.threadID, event.messageID);
+      api.sendMessage(`👑 𝗧𝗿𝗮𝗻𝘀𝗹𝗮𝘁𝗶𝗼𝗻\n━━━━━━━━━━━\n\n${text}\n${fromLang} 𝐭𝐨 ${lang}`, event.threadID, event.messageID);
     });
   } catch (error) {
     api.sendMessage(error.message, event.threadID, event.messageID);

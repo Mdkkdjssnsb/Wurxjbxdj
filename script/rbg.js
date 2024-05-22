@@ -10,9 +10,8 @@ module.exports.config = {
   commandCategory: "Utility",
   credits: "cliff",//api by hazey 
   description: "Enhance your photo by removing the background.",
-  hasPrefix: false,
+  hasPrefix: true,
   cooldowns: 2,
-  usePrefix: false,
   cooldown: 2,
   usage: "replying photo",
   usages: "replying photo"

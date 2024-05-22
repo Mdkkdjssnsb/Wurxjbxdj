@@ -4,10 +4,10 @@ const axios = require('axios');
 
 module.exports.config = {
   name: "4k",
-  version: "1.0.0",
+  version: "1.0",
   hasPermission: 0,
   aliases:["remini"],
-  credits: "aesther",
+  credits: "ArYAN",
   description: "Enhance image using Remini API",
   commandCategory: "tools",
   usages: "[ reply a photo ]",
@@ -24,8 +24,8 @@ module.exports.run = async function ({ api, event, args }) {
   const photoUrl = messageReply.attachments[0].url;
 
   try {
-    const response = await axios.get(`https://eurix-api.replit.app/remini?input=${encodeURIComponent(photoUrl)}`, { responseType: "arraybuffer"});
-    const img = response.data;
+    const response = await axios.get(`https://himachalwale.onrender.com/api/4k?url=${encodeURIComponent(photoUrl)}&apikey=©himachalwale`, { responseType: "arraybuffer"});
+    const img = response.data.resultUrl;
 
 
     const photoPath = path.join(__dirname, 'cache', 'enhanced.jpg');

@@ -8,7 +8,7 @@ module.exports.config = {
   hasPermission: 0,
   commandCategory: "image",
 	credits: "cliff",
-	hasPrefix: false,
+	hasPrefix: true,
   usePrefix: false,
 	description: "Upload an image to imgbb",
 	usage: "{pn} <attached image>",

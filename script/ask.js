@@ -10,7 +10,7 @@ const axios = require('axios');
 module.exports.config = {
   name: "orochi",
   version: 1.0,
-  credits: "aesther | ArYAN",
+  credits: "ArYAN | Orochi",
   description: "AI",
   hasPrefix: true,
   usages: "{pn} [prompt]",
@@ -22,7 +22,7 @@ module.exports.run = async function ({ api, event, args }) {
   try {
     const prompt = args.join(" ");
     if (!prompt) {
-      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n\n━━━━━━━━━━━\n Hello! How can I assist you today ?", event.threadID);
+      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━━━━\n\nHello! How can I assist you today ?", event.threadID, event messageID);
       return;
     }
     const response = await axios.get(`https://himachalwale.onrender.com/ask/orochi?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`);
@@ -37,7 +37,7 @@ module.exports.run = async function ({ api, event, args }) {
       }
     }
 
-    await api.sendMessage(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━\n${formattedAnswer}`, event.threadID);
+    await api.sendMessage(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━━━\n\n${formattedAnswer}`, event.threadID, event.messageID);
   } catch (error) {
     console.error("Error:", error.message);
   }

@@ -12,9 +12,9 @@ module.exports.config = {
   version: 1.0,
   credits: "aesther | ArYAN",
   description: "AI",
-  hasPrefix: false,
+  hasPrefix: true,
   usages: "{pn} [prompt]",
-  aliases: ["chi"],
+  aliases: ["chi", ".chi"],
   cooldown: 0,
 };
 

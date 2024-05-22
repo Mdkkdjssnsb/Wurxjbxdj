@@ -8,13 +8,13 @@ const fonts = {
 const axios = require('axios');
 
 module.exports.config = {
-  name: "ai",
+  name: "orochi",
   version: 1.0,
-  credits: "aesther",//Api OtinXsandip
+  credits: "aesther | ArYAN",
   description: "AI",
   hasPrefix: false,
   usages: "{pn} [prompt]",
-  aliases: ["ai2", "bot"],
+  aliases: ["chi"],
   cooldown: 0,
 };
 
@@ -22,10 +22,10 @@ module.exports.run = async function ({ api, event, args }) {
   try {
     const prompt = args.join(" ");
     if (!prompt) {
-      await api.sendMessage("𝗣𝗛𝗔𝗥𝗢𝗨𝗞 ✦\n━━━━━━━━━━━\n Hey master how can help you ?", event.threadID);
+      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━\n Hello! How can I assist you today ?", event.threadID);
       return;
     }
-    const response = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
+    const response = await axios.get(`https://himachalwale.onrender.com/ask/orochi?prompt=${encodeURIComponent(prompt)}&apikey=himachalwale`);
     const answer = response.data.answer;
 
     let formattedAnswer = "";
@@ -37,7 +37,7 @@ module.exports.run = async function ({ api, event, args }) {
       }
     }
 
-    await api.sendMessage(`𝗣𝗛𝗔𝗥𝗢𝗨𝗞 ✦ \n━━━━━━━━━━━\n${formattedAnswer} ☕`, event.threadID);
+    await api.sendMessage(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━\n${formattedAnswer}`, event.threadID);
   } catch (error) {
     console.error("Error:", error.message);
   }

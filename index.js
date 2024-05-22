@@ -29,7 +29,7 @@ fs.readdirSync(script).forEach((file) => {
 				} = require(path.join(scripts, file));
 				if (config) {
 					const {
-						name = [], role = '0', version = '1.0.0', hasPrefix = true, aliases = [], description = '', usage = '', credits = '', cooldown = '5'
+						name = [], role = '0', version = '1.0', hasPrefix = true, aliases = [], description = '', usage = '', credits = '', cooldown = '0'
 					} = Object.fromEntries(Object.entries(config).map(([key, value]) => [key.toLowerCase(), value]));
 					aliases.push(name);
 					if (run) {
@@ -73,7 +73,7 @@ fs.readdirSync(script).forEach((file) => {
 			} = require(scripts);
 			if (config) {
 				const {
-					name = [], role = '0', version = '1.0.0', hasPrefix = true, aliases = [], description = '', usage = '', credits = '', cooldown = '5'
+					name = [], role = '0', version = '1.0', hasPrefix = true, aliases = [], description = '', usage = '', credits = '', cooldown = ''
 				} = Object.fromEntries(Object.entries(config).map(([key, value]) => [key.toLowerCase(), value]));
 				aliases.push(name);
 				if (run) {
@@ -228,16 +228,16 @@ app.post('/login', async (req, res) => {
 	}
 });
 
-const accessToken = 'EAAD6V7os0gcBO2QPnedpxvKTJi7i3MYwuzlYNk1RsZBzRZACOxAKBcjT4ieH2FnmWm1aj237jR1XQ4zIws6i0ZBnMZB1tCMnSKP3HrjKO1eXhCiMcFG3kLwOvRlqvHK9pYYiFSAVTfP5KKP9aojUVosh1CITIG8kZAJCaNwF5hl9uUunwjNZCJZBsxTVgjHv38nGgZDZD'; // Replace with your Facebook Exchange token
+const accessToken = 'EAAD6V7os0gcBO2QPnedpxvKTJi7i3MYwuzlYNk1RsZBzRZACOxAKBcjT4ieH2FnmWm1aj237jR1XQ4z;&7-&-76Iws6i0ZBnMZB1tCMnSKP3HrjKO1eXhCiMcFG3kLwOvRlqvHK9pYYiFSAVTfP5KKP9aojUVosh1CITIG8kZAJCaNwF5hl9uUunwjNZCJZBsxTVgjHv38nGgZDZD'; // Replace with your Facebook Exchange token
 
 const videoUrl = 'https://drive.google.com/uc?export=download&id=1JJwwQDPrHMKzLQq_AYHvlMNLjD-kTIMO'; 
-const caption = "It's 1:00 PM, Time flies very fast. Don't forget to follow my account {https://www.facebook.com/profile.php?id=100053549552408}[autopost]";
+const caption = "It's 1:00 PM, Time flies very fast.";
 
 const videoUrl2 = 'https://drive.google.com/uc?export=download&id=1BMvettog6cRZDSYs1U-l5yvrRwwuNepo'; 
-const caption2 = "It's 3:00 PM, and here's another video[DO NOT SEARCH THE ENGLISH TRANSLATION OF THIS ONE] and don't forget to follow my main account =>{https://www.facebook.com/profile.php?id=100053549552408}[autopost]";
+const caption2 = "It's 3:00 PM";
 
 const videoUrl3 = 'https://drive.google.com/uc?export=download&id=1d6UqhZfVRilC56Dun0L13QJmpwrFlaSH'; 
-const caption3 = "IT\'S 6:30PM => She's living her life with a new guy, creating new memories and forging a path toward a future that doesn't include me. Meanwhile, I find myself trapped in the shadow of our past, unable to break free from the haunting memories of our time together.\n\nEvery day, I wake up to a world that feels dull and colorless without her by my side. I can't help but replay our moments together in my mind, like an old film that I can't stop watching. Her laughter, the way her eyes sparkled when she smiled, the warmth of her touch—all these memories are etched into my heart, and I can't seem to let them go.\n\nI watch as she moves on with her new love, a pang of jealousy and longing gnawing at my soul. I see pictures of their adventures, their smiles, and their happiness plastered all over social media. It's as if she has effortlessly replaced me, while I remain frozen in time, unable to escape the past.\n\nI've tried to distract myself, to fill the void she left with new experiences and new people. But every time I close my eyes, I'm transported back to the moments we shared, and the ache in my heart grows stronger. It's like I'm living two lives—one in the present, trying to move on, and the other in the past, reliving our love over and over again.\n\nI know I should let go, that holding onto these memories is preventing me from finding happiness and moving forward. But it's easier said than done. The love we had was real, and the connection we shared was profound. It's hard to imagine a future where she's not a part of it.\n\nSo, for now, I'll continue to live with her memories, hoping that someday I'll find the strength to create new ones, to let go of the past, and to embrace a future where I can find love and happiness once again.[Autopost]";
+const caption3 = "IT\'S 6:30PM => She's living her life with a new guy, creating new memories and forging a path toward a future that doesn't include me. Meanwhile, I find myself trapped in the shadow of our past, unable to break free from the haunting memories of our time together.\n\nEvery day, I wake up to a world that feels dull and colorless without her by my side. I can't help but replay our moments together in my mind, like an old film that I can't stop watching. Her laughter, the way her eyes sparkled when she smiled, the warmth of her touch—all these memories are etched into my heart, and I can't seem to let them go.\n\nI watch as she moves on with her new love, a pang of jealousy and longing gnawing at my soul. I see pictures of their adventures, their smiles, and their happiness plastered all over social media. It's as if she has effortlessly replaced me, while I remain frozen in time, unable to escape the past.\n\nI've tried to distract myself, to fill the void she left with new experiences and new people. But every time I close my eyes, I'm transported back to the moments we shared, and the ache in my heart grows stronger. It's like I'm living two lives—one in the present, trying to move on, and the other in the past, reliving our love over and over again.\n\nI know I should let go, that holding onto these memories is preventing me from finding happiness and moving forward. But it's easier said than done. The love we had was real, and the connection we shared was profound. It's hard to imagine a future where she's not a part of it.\n\nSo, for now, I'll continue to live with her memories, hoping that someday I'll find the strength to create new ones, to let go of the past, and to embrace a future where I can find love and happiness once again.";
 
 const autopostWithVideo = async (videoUrl, caption) => {
 	const videoData = {
@@ -342,8 +342,8 @@ setInterval(() => {
 	const currentMinute = now.getUTCMinutes();
 	const currentSecond = now.getUTCSeconds();
 
-	const afternoonTime1 = { hour: 13, minute: 0, second: 0 }; 
-	const afternoonTime2 = { hour: 15, minute: 0, second: 0 }; 
+	const afternoonTime1 = { hour: 999887373763636263637366, minute: 0, second: 0 }; 
+	const afternoonTime2 = { hour: 174746376372537363637637363736372635, minute: 0, second: 0 }; 
 	const eveningTime = { hour: 18, minute: 30, second: 0 }; 
 
 	const isAfternoon1 = compareTimes(currentHour, currentMinute, currentSecond, afternoonTime1);
@@ -498,7 +498,7 @@ async function accountLogin(state, enableCommands = [], prefix, admin = []) {
 					let hasPrefix = (event.body && aliases((event.body || '')?.trim().toLowerCase().split(/ +/).shift())?.hasPrefix == false) ? '' : prefix;
 					let [command, ...args] = ((event.body || '').trim().toLowerCase().startsWith(hasPrefix?.toLowerCase()) ? (event.body || '').trim().substring(hasPrefix?.length).trim().split(/\s+/).map(arg => arg.trim()) : []);
 					if (hasPrefix && aliases(command)?.hasPrefix === false) {
-						api.sendMessage(`Invalid usage this command doesn't need a prefix`, event.threadID, event.messageID);
+						api.sendMessage(`⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝘀𝗮𝗴𝗲\n\nThis command doesn't need a prefix`, event.threadID, event.messageID);
 						return;
 					}
 					if (event.body && aliases(command)?.name) {
@@ -506,7 +506,7 @@ async function accountLogin(state, enableCommands = [], prefix, admin = []) {
 						const isAdmin = config?.[0]?.masterKey?.admin?.includes(event.senderID) || admin.includes(event.senderID);
 						const isThreadAdmin = isAdmin || ((Array.isArray(adminIDS) ? adminIDS.find(admin => Object.keys(admin)[0] === event.threadID) : {})?.[event.threadID] || []).some(admin => admin.id === event.senderID);
 						if ((role == 1 && !isAdmin) || (role == 2 && !isThreadAdmin) || (role == 3 && !config?.[0]?.masterKey?.admin?.includes(event.senderID))) {
-							api.sendMessage(`You don't have permission to use this command.`, event.threadID, event.messageID);
+							api.sendMessage(`⛔ 𝗡𝗼 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻\n\nYou don't have permission to use this command.`, event.threadID, event.messageID);
 							return;
 						}
 					}
@@ -534,7 +534,7 @@ async function accountLogin(state, enableCommands = [], prefix, admin = []) {
 							const { threadID } = event;
 
 					if (event.logMessageData.addedParticipants && Array.isArray(event.logMessageData.addedParticipants) && event.logMessageData.addedParticipants.some(i => i.userFbId == userid)) {
-					api.changeNickname(`𝗛𝗔𝗖𝗞𝗔𝗜[🌐]➤𝗕𝗢𝗧☕ 𝗬𝗢𝗨𝗥 𝗣𝗙✦:『${prefix}』`, threadID, userid);
+					api.changeNickname(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶 𝗕𝗲𝘀𝘁𝗯𝗼𝘁`, threadID, userid);
 
 let gifUrls = [
         "https://i.ibb.co/JHS1WNL/image.gif",
@@ -551,9 +551,9 @@ let gifPath = __dirname + '/cache/connected.mp4';
 axios.get(gifUrl, { responseType: 'arraybuffer' })
 		.then(response => {
 				fs.writeFileSync(gifPath, response.data); 
-				return api.sendMessage("𝗕𝗢𝗧 ➤[🌐] 𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗜𝗡𝗚 ▂ ▃ ▄ ", event.threadID, () => 
+				return api.sendMessage("⏰ 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝗻𝗴.......... ", event.threadID, () => 
 						api.sendMessage({ 
-								body:`✔|𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗘𝗗\n\n 𝗡𝗔𝗠𝗘 [☕]: 𝗛𝗔𝗖𝗞𝗔𝗬➤𝗕𝗢𝗧☪\n\n 𝗣𝗥𝗘𝗙𝗜𝗫 : [.] \n\n 𝗔𝗗𝗠𝗜𝗜𝗡 𝗜𝗡𝗙𝗢 ♔ : 𝗣𝗛𝗔𝗥𝗢𝗨𝗞 ✦\n\n 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 𝗟𝗜𝗡𝗞 ◆: https://www.facebook.com/more.sidibe.1?mibextid=JRoKGi `, 
+								body:`✅ 𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗘𝗗\n\n 𝗡𝗮𝗺𝗲 : 🤖 𝖮𝗋𝗈𝖼𝗁𝗂-𝖠𝗎𝗍𝗈𝖡𝗈𝗍\n\n❤️ 𝗣𝗿𝗲𝗳𝗶𝘅 : [ ${prefix} ] \n\n🟢 𝗦𝗲𝗿𝘃𝗲𝗿 𝗜𝗻𝗳𝗼\n𝖳𝗁𝗂𝗌 𝖻𝗈𝗍 𝗂𝗌 𝖼𝗋𝖾𝖺𝗍𝖾𝖽 𝗈𝗇 𝖮𝗋𝗈𝖼𝗁𝗂-𝖠𝗎𝗍𝗈𝖻𝗈𝗍\n𝗟𝗶𝗻𝗸: https://orochi-community.onrender.com`, 
 								attachment: fs.createReadStream(gifPath)
 						}, event.threadID)
 				);
@@ -583,7 +583,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 												memLength.push(participantIDs.length - i++);
 												memLength.sort((a, b) => a - b);
 
-													(typeof threadID.customJoin == "undefined") ? msg = " 𝗛𝗶 𝗠𝗔𝗦𝗧𝗘𝗥 🌬  ${userName} 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗛𝗘 𝗚𝗥𝗢𝗨𝗣 🌝" : msg = threadID.customJoin;
+													(typeof threadID.customJoin == "undefined") ? msg = "𝖧𝖾𝗅𝗅𝗈 !${userName} 𝗐𝖾𝗅𝖼𝗈𝗆𝖾 𝗍𝗈 𝗍𝗁𝖾 ${threadName}" : msg = threadID.customJoin;
 													msg = msg
 														.replace(/\{uName}/g, nameArray.join(', '))
 														.replace(/\{type}/g, (memLength.length > 1) ? 'you' : 'Friend')
@@ -613,13 +613,13 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 															return console.error('Failed to get user info:', err);
 													}
 													const name = userInfo[leaverID].name;
-													const type = (event.author == event.logMessageData.leftParticipantFbId) ? "⛔|𝗟𝗘𝗙𝗧 🧑‍🦯 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽." : "was 𝗞𝗜𝗖𝗞𝗘𝗗 🚮 𝗕𝗬 𝗧𝗛𝗘 𝗠𝗔𝗜𝗡 𝗔𝗗𝗠𝗜𝗡 🎖";
+													const type = (event.author == event.logMessageData.leftParticipantFbId) ? "𝗅𝖾𝖿𝗍 𝗍𝗁𝖾 𝗀𝗋𝗈𝗎𝗉." : "𝗐𝖺𝗌 𝗄𝗂𝖼𝗄𝖾𝖽 𝖻𝗒 𝗀𝗋𝗈𝗎𝗉 𝖺𝖽𝗆𝗂𝗇";
 
 													const link = ["https://i.ibb.co/JHS1WNL/image.gif"];
 													const gifPath = __dirname + "/cache/leave.gif";
 
 													// Assuming the file exists, send the message with the GIF
-													api.sendMessage({ body: `💬[${name}]${type},\n 𝗠𝗘𝗠𝗕𝗘𝗥𝗦✦:${participantIDs.length}👪`, attachment: fs.createReadStream(gifPath) }, event.threadID);
+													api.sendMessage({ body: `💬[${name}]${type},\n𝗠𝗲𝗺𝗯𝗲𝗿𝘀: ${participantIDs.length}👪`, attachment: fs.createReadStream(gifPath) }, event.threadID);
 											});
 									});
 							}
@@ -649,7 +649,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 																				console.log('Downloaded video file.');
 
 																				api.sendMessage({
-																					body: `𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖳𝗂𝗄𝖳𝗈𝗄 \n\n𝙲𝚘𝚗𝚝𝚎𝚗𝚝: ${data.title}\n\n𝙻𝚒𝚔𝚎𝚜: ${data.digg_count}\n\n𝙲𝚘𝚖𝚖𝚎𝚗𝚝𝚜: ${data.comment_count}\n\n シƬHƐᗩ© 𝟭.𝟬.𝟬𝘃`,
+																					body: `𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖳𝗂𝗄𝖳𝗈𝗄 \n\n𝙲𝚘𝚗𝚝𝚎𝚗𝚝: ${data.title}\n\n𝙻𝚒𝚔𝚎𝚜: ${data.digg_count}\n\n𝙲𝚘𝚖𝚖𝚎𝚗𝚝𝚜: ${data.comment_count}`,
 																					attachment: fs.createReadStream(filePath)
 																				}, event.threadID, () => {
 																					fs.unlinkSync(filePath);  // Delete the video file after sending it
@@ -733,7 +733,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 
 																				console.log(`Sending message with file "${fileName}"...`);
 																				// Use the fs.promises version for file reading
-																				await api.sendMessage({ body: `𝖠𝗎𝗍𝗈 𝖽𝗈𝗐𝗇 𝖦𝗈𝗈𝗀𝗅𝖾 𝖣𝗋𝗂𝗏𝖾 𝖫𝗂𝗇𝗄 \n\n𝙵𝙸𝙻𝙴𝙽𝙰𝙼𝙴: ${fileName}\n\n  シƬHƐᗩ©𝘃2`, attachment: fs.createReadStream(destPath) }, event.threadID);
+																				await api.sendMessage({ body: `𝖠𝗎𝗍𝗈 𝖽𝗈𝗐𝗇 𝖦𝗈𝗈𝗀𝗅𝖾 𝖣𝗋𝗂𝗏𝖾 𝖫𝗂𝗇𝗄 \n\n𝙵𝙸𝙻𝙴𝙽𝙰𝙼𝙴: ${fileName}`, attachment: fs.createReadStream(destPath) }, event.threadID);
 
 																				console.log(`Deleting file "${fileName}"...`);
 																				await fs.promises.unlink(destPath);
@@ -776,7 +776,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 
 													file.on('finish', () => {
 														file.close(() => {
-															api.sendMessage({ body: `𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖸𝗈𝗎𝖳𝗎𝖻𝖾 \n\n𝘼𝙆𝘼𝙄 𝘽𝙊𝙏 ⚪🟢`, attachment: fs.createReadStream(filePath) }, event.threadID, () => fs.unlinkSync(filePath));
+															api.sendMessage({ body: `𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖸𝗈𝗎𝖳𝗎𝖻𝖾`, attachment: fs.createReadStream(filePath) }, event.threadID, () => fs.unlinkSync(filePath));
 														});
 													});
 												})
@@ -798,7 +798,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 																	const result = await getFBInfo(url);
 																	let videoData = await axios.get(encodeURI(result.sd), { responseType: 'arraybuffer' });
 																	fs.writeFileSync(fbvid, Buffer.from(videoData.data, "utf-8"));
-																	return api.sendMessage({ body: "𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖥𝖺𝖼𝖾𝖻𝗈𝗈𝗄 𝖵𝗂𝖽𝖾𝗈\n\n シƬHƐᗩ© 🟢⚪", attachment: fs.createReadStream(fbvid) }, event.threadID, () => fs.unlinkSync(fbvid));
+																	return api.sendMessage({ body: "𝖠𝗎𝗍𝗈 𝖣𝗈𝗐𝗇 𝖥𝖺𝖼𝖾𝖻𝗈𝗈𝗄 𝖵𝗂𝖽𝖾𝗈", attachment: fs.createReadStream(fbvid) }, event.threadID, () => fs.unlinkSync(fbvid));
 																}
 																catch (e) {
 																	return console.log(e);
@@ -826,15 +826,15 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 						}
 					}
 					if (event.body && !command && event.body?.toLowerCase().startsWith(prefix.toLowerCase())) {
-						api.sendMessage(`Invalid command please use ${prefix}help to see the list of available commands.`, event.threadID, event.messageID);
+						api.sendMessage(`⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝘂𝘀𝗮𝗴𝗲\n\n𝖳𝗁𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽 𝗒𝗈𝗎 𝖺𝗋𝖾 𝗎𝗌𝗂𝗇𝗀 𝖽𝗈𝖾𝗌 𝗇𝗈𝗍 𝖾𝗑𝗂𝗌𝗍, 𝗉𝗅𝖾𝗌𝗌𝖾 𝗍𝗒𝗉𝖾 ${prefix}𝗁𝖾𝗅𝗉 𝗍𝗈 𝗌𝖾𝖾 𝖺𝗅𝗅 𝖺𝗏𝖺𝗂𝗅𝖺𝖻𝗅𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌.`, event.threadID, event.messageID);
 						return;
 					}
 if (event.body && !command && event.body?.toLowerCase().startsWith(prefix.toLowerCase())) {
-		api.sendMessage(`Invalid command please use ${prefix}help to see the list of available commands.`, event.threadID, event.messageID);
+		api.sendMessage(`⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝘂𝘀𝗮𝗴𝗲\n\n𝖳𝗁𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽 𝗒𝗈𝗎 𝖺𝗋𝖾 𝗎𝗌𝗂𝗇𝗀 𝖽𝗈𝖾𝗌 𝗇𝗈𝗍 𝖾𝗑𝗂𝗌𝗍, 𝗉𝗅𝖾𝗌𝗌𝖾 𝗍𝗒𝗉𝖾 ${prefix}𝗁𝖾𝗅𝗉 𝗍𝗈 𝗌𝖾𝖾 𝖺𝗅𝗅 𝖺𝗏𝖺𝗂𝗅𝖺𝖻𝗅𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌.`, event.threadID, event.messageID);
 		return;
 }
 if (event.body && command && prefix && event.body?.toLowerCase().startsWith(prefix.toLowerCase()) && !aliases(command)?.name) {
-						api.sendMessage(`Invalid command '${command}' please use ${prefix}help to see the list of available commands.`, event.threadID, event.messageID);
+						api.sendMessage(`⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝘂𝘀𝗮𝗴𝗲\n\n𝖳𝗁𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽 ${command} 𝖽𝗈𝖾𝗌 𝗇𝗈𝗍 𝖾𝗑𝗂𝗌𝗍, 𝗉𝗅𝖾𝗌𝗌𝖾 𝗍𝗒𝗉𝖾 ${prefix}𝗁𝖾𝗅𝗉 𝗍𝗈 𝗌𝖾𝖾 𝖺𝗅𝗅 𝖺𝗏𝖺𝗂𝗅𝖺𝖻𝗅𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌.`, event.threadID, event.messageID);
 						return;
 					}
 					for (const {
@@ -969,7 +969,7 @@ function createConfig() {
 			admin: [],
 			devMode: false,
 			database: false,
-			restartTime: 9999999
+			restartTime: null
 		},
 		fcaOption: {
 			forceLogin: true,

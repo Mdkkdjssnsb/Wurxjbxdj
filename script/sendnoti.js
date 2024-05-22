@@ -7,7 +7,7 @@ module.exports.config = {
 	version: "1.1.0",
 	role: 2,
 	description: "Sends a message to all groups and can only be done by the admin.",
-	hasPrefix: false,
+	hasPrefix: true,
 	aliases: ["noti"],
 	usages: "[Text]",
 	cooldown: 0,
@@ -21,13 +21,13 @@ module.exports.run = async function ({ api, event, args, admin }) {
 	async function sendMessage(thread) {
 		try {
 			await api.sendMessage(
-`𝗡𝗢𝗧𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡 𝗙𝗥𝗢𝗠 𝗔𝗗𝗠𝗜𝗡[💬] \n━━━━━━━━━━━━━━━━━━━━━━━\n🔬:「${custom}」\n━━━━━━━━━━━━━━━━━━━━━━━\n 𝗛𝗔𝗖𝗞𝗔𝗜 [🌐]➤𝗕𝗢𝗧🧋`,
+`📢 𝗡𝗢𝗧𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡\n\n━━━━━━━━━━━━━━━━━━━━━━━\n🔬:「${custom}」\n━━━━━━━━━━━━━━━━━━━━━━━`,
 				thread.threadID
 			);
 			sentCount++;
 
 			const content = `${custom}`;
-			const languageToSay = "tl"; 
+			const languageToSay = "en"; 
 			const pathFemale = path.resolve(__dirname, "cache", `${thread.threadID}_female.mp3`);
 
 			await downloadFile(
@@ -45,7 +45,7 @@ module.exports.run = async function ({ api, event, args, admin }) {
 	}
 
 	for (const thread of threadList) {
-		if (sentCount >= 20) {
+		if (sentCount >= 2000) {
 			break;
 		}
 		if (thread.isGroup && thread.name != thread.threadID && thread.threadID != event.threadID) {

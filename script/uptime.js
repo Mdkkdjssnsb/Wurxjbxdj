@@ -13,7 +13,7 @@ module.exports.config = {
   hasPrefix: true,
 };
 
-module.exports.run = async function ({ api, event, args, usersData, threadsData }) {
+module.exports.run = async function ({ api, event, args }) {
   try {
     const uptimeInSeconds = (new Date() - startTime) / 1000;
 
@@ -81,8 +81,6 @@ module.exports.run = async function ({ api, event, args, usersData, threadsData 
 │ ✅ 𝗢𝗧𝗛𝗘𝗥 𝗜𝗡𝗙𝗢
 │𝙳𝙰𝚃𝙴: ${date}
 │𝚃𝙸𝙼𝙴: ${time}
-│𝚄𝚂𝙴𝚁𝚂: ${allUsers.length}
-│𝚃𝙷𝚁𝙴𝙰𝙳𝚂: ${allThreads.length}
 │𝙿𝙸𝙽𝙶: ${ping}𝚖𝚜
 │𝚂𝚃𝙰𝚃𝚄𝚂: ${pingStatus}
 ╰───────────────⟡

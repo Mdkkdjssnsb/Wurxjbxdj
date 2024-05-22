@@ -4,7 +4,7 @@ module.exports.config = {
 	name: "imgur",
 	version: "1.0.0",
 	role: 0,
-	hasPrefix: false,
+	hasPrefix: true,
 	credits: "cliff", //from fca 
 	description: "upload to imgur",
 	usages: "imgur reply image,video,png,jpg",

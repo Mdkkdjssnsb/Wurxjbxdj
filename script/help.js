@@ -29,7 +29,7 @@ module.exports.run = async function ({
 			let helpMessage = `📍|𝗔𝗟𝗟 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦\n\n`;
 			for (let i = start; i < Math.min(end, commands.length); i++) {
 				helpMessage += `╭───────────────⟡
-│🟢 ${commands[1]}
+│🟢 ${commands[i]}
 ╰───────────────⟡\n`;
 			}
 			helpMessage += '\n✅| 𝗘𝘃𝗲𝗻𝘁𝘀 𝗟𝗶𝘀𝘁\n━━━━━━━━━━━\n';

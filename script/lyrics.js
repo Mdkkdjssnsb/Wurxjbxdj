@@ -5,7 +5,7 @@ module.exports.config = {
   usage: "[title of song]",
   credits: "deku & remod to mirai by Eugene Aguilar",
   cooldown: 0,
-  hasPrefix: false
+  hasPrefix: true
 }
 
 module.exports.run = async function({ api, event, args }) {

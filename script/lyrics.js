@@ -33,7 +33,7 @@ module.exports.run = async function({ api, event, args }) {
       let message = `ℹ 𝗟𝘆𝗿𝗶𝗰𝘀 𝗧𝗶𝘁𝗹𝗲\n➤ ${title}\n👑 𝗔𝗿𝘁𝗶𝘀𝘁\n➤ ${artist}\n\n✅ 𝗛𝗘𝗥𝗘 𝗜𝗦 𝗬𝗢𝗨𝗥 𝗟𝗬𝗥𝗜𝗖𝗦\n━━━━━━━━━━━━━━━\n${lyrics}\n\n━━━━━━𝗘𝗡𝗗━━━━━━━`;
 
       if (image) {
-        let attachment = await global.utils.getStreamFromURL(image);
+        let attachment = await fs.getStreamFromURL(image);
         api.sendMessage({ body: message, attachment }, event.threadID, (err, info) => {
           if (err) {
             console.error(err);

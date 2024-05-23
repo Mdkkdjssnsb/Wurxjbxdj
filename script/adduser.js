@@ -4,7 +4,7 @@ module.exports.config = {
 	role: 0,
 	credits: "cliff",
 	description: "Add user to group by id",
-	hasPrefix: false,
+	hasPrefix: true,
 	usage: "[args]",
 	cooldowns: 5
 };

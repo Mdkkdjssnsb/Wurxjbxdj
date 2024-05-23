@@ -2,10 +2,11 @@ module.exports.config = {
 	name: "adduser",
 	version: "1.0.1",
 	role: 0,
-	aliases: ["add"],
-	credits: "Yan Maglinte",
+	credits: "cliff",
 	description: "Add user to group by id",
-	cooldown: 0,
+	hasPrefix: false,
+	usage: "[args]",
+	cooldowns: 5
 };
 
 module.exports.run = async function ({ api, event, args }) {

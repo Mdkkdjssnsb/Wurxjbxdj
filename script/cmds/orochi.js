@@ -11,10 +11,10 @@ module.exports.config = {
   name: "orochi",
   version: 1.0,
   credits: "ArYAN | Orochi",
-  description: "AI",
+  description: "ask an questios to Orochi Ai",
   hasPrefix: true,
   usages: "{pn} [prompt]",
-  aliases: ["chi", ".chi"],
+  aliases: ["chi"],
   cooldown: 0,
 };
 
@@ -22,7 +22,7 @@ module.exports.run = async function ({ api, event, args }) {
   try {
     const prompt = args.join(" ");
     if (!prompt) {
-      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗁𝗶\n━━━━━━━━━━━━━━\n\nHello! How can I assist you today ?", event.threadID, event.messageID);
+      await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗁𝗶\n━━━━━━━━━━━━━━\n\n𝖧𝖾𝗅𝗅𝗈! 𝖧𝗈𝗐 𝖼𝖺𝗇 𝗂 𝖺𝗌𝗌𝗂𝗌𝗍 𝗒𝗈𝗎 𝗍𝗈𝖽𝖺𝗒 ?", event.threadID, event.messageID);
       return;
     }
     const response = await axios.get(`https://himachalwale.onrender.com/ask/orochi?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`);

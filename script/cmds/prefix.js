@@ -43,7 +43,7 @@ module.exports.run = async function ({ api, event, args, prefix }) {
 ━━━━━━━━━━━━
 
 𝗦𝘁𝗮𝘆 𝗮𝘄𝗲𝘀𝗼𝗺𝗲 𝗮𝗻𝗱 𝗸𝗲𝗲𝗽 𝗰𝗵𝗮𝘁𝘁𝗶𝗻𝗴! 😎`;
-    api.sendMessage({ body: myPrefix }, event.threadID);
+    api.sendMessage({ body: myPrefix }, event.threadID, event.messageID);
   } catch (error) {
     console.error("Error sending prefix message:", error);
     api.sendMessage(

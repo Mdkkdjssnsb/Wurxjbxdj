@@ -1,90 +1,78 @@
 module.exports.config = {
-  name: "sing",
-  version: "2.0.4",
-  role: 0,
-  credits: "Grey",
-  description: "Play a song",
-  aliases: ["play", "music", "song"],
-  cooldown: 0,
-  hasPrefix: false,
-  usage: "sing [ Song Name ]",
+ name: "sing",
+ version: "2.0.4",
+ role: 0,
+ credits: "Grey",
+ description: "Play a song",
+ aliases: ["sing"],
+cooldowns: 15,
+hasPrefix: false,
+	usage: "",
 };
 
 module.exports.run = async ({ api, event }) => {
-  const axios = require("axios");
-  const fs = require("fs-extra");
-  const ytdl = require("@distube/ytdl-core");
-  const request = require("request");
-  const yts = require("yt-search");
-  const path = require("path");
+ const axios = require("axios");
+ const fs = require("fs-extra");
+ const ytdl = require("@distube/ytdl-core");
+ const request = require("request");
+ const yts = require("yt-search");
 
-  const formatFileSize = (bytes, decimalPoint) => {
-    if (bytes == 0) return '0 Bytes';
-    let k = 1024,
-      dm = decimalPoint || 2,
-      sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'],
-      i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  };
+ const input = event.body;
+ const text = input.substring(12);
+ const data = input.split(" ");
 
-  try {
-    const input = event.body;
-    const text = input.substring(5);
-    const data = input.split(' ');
+ if (data.length < 2) {
+	return api.sendMessage("Please put a song", event.threadID);
+ }
 
-    if (data.length < 2) {
-      return api.sendMessage(`⛔|𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝘀𝗲\n━━━━━━━━━━━━\n\nPlease provide specify music name!`, event.threadID);
-    }
+ data.shift();
+ const song = data.join(" ");
 
-    data.shift();
-    const musicName = data.join(' ');
+ try {
+	api.sendMessage(`Finding "${song}". Please wait...`, event.threadID);
 
-    api.setMessageReaction('⏰', event.messageID, () => {}, true);
+	const searchResults = await yts(song);
+	if (!searchResults.videos.length) {
+	 return api.sendMessage("Error: Invalid request.", event.threadID, event.messageID);
+	}
 
-    const searchResults = await yts(musicName);
-    if (!searchResults.videos.length) {
-      api.sendMessage(`⛔|𝗡𝗼 𝗗𝗮𝘁𝗮\n━━━━━━━━━━━━\n\nNo music found.`, event.threadID);
-      return;
-    }
+	const video = searchResults.videos[0];
+	const videoUrl = video.url;
 
-    const music = searchResults.videos[0];
-    const musicUrl = music.url;
+	const stream = ytdl(videoUrl, { filter: "audioonly" });
 
-    const stream = ytdl(musicUrl, { filter: 'audioonly' });
+	const fileName = `${event.senderID}.mp3`;
+	const filePath = __dirname + `/../cache/${fileName}`;
 
-    const fileName = `${event.senderID}.mp3`;
-    const filePath = path.join(__dirname, 'cache', fileName);
+	stream.pipe(fs.createWriteStream(filePath));
 
-    const writeStream = stream.pipe(fs.createWriteStream(filePath));
+	stream.on('response', () => {
+	 console.info('[DOWNLOADER]', 'Starting download now!');
+	});
 
-    writeStream.on('finish', () => {
-      console.info('[DOWNLOADER] Downloaded');
+	stream.on('info', (info) => {
+	 console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
+	});
 
-      const fileSize = formatFileSize(fs.statSync(filePath).size);
-      const musicDuration = music.duration.timestamp;
+	stream.on('end', () => {
+	 console.info('[DOWNLOADER] Downloaded');
 
-      const likes = music.likes !== undefined ? music.likes : 'N/A';
-      const dislikes = music.dislikes !== undefined ? music.dislikes : 'N/A';
-      const views = music.views !== undefined ? music.views : 'N/A';
+	 if (fs.statSync(filePath).size > 26214400) {
+		fs.unlinkSync(filePath);
+		return api.sendMessage('[ERR] The file could not be sent because it is larger than 25MB.', event.threadID);
+	 }
 
-      const message = {
-        body: `🎶|𝗬𝗧 𝗠𝗨𝗦𝗜𝗖\n━━━━━━━━━━━━\n\n✨ 𝗧𝗶𝘁𝗹𝗲: ${music.title}\n\n📅 𝗣𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗼𝗻: ${music.ago}\n\n👀 𝘃𝗶𝗲𝘄𝘀 : ${views}\n\n👎 𝗗𝗶𝘀𝗹𝗶𝗸𝗲𝘀: ${dislikes}\n\n👍 𝗟𝗶𝗸𝗲𝘀: ${likes}\n\n⏳ 𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻: ${musicDuration}\n\n🖇️ 𝗙𝗶𝗹𝗲 𝗦𝗶𝘇𝗲: ${fileSize}\n\n🎵 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${music.author.name}\n\n📎 𝗨𝗥𝗟: ${music.url}`,
-        attachment: fs.createReadStream(filePath),
-      };
+	 const message = {
+		body: `Here's your music, enjoy!🥰\n\nTitle: ${video.title}\nArtist: ${video.author.name}`,
+		attachment: fs.createReadStream(filePath)
+	 };
 
-      api.sendMessage(message, event.threadID, () => {
-        fs.unlinkSync(filePath);
-        api.setMessageReaction('✅', event.messageID, () => {}, true);
-      });
-    });
-
-    writeStream.on('error', (error) => {
-      console.error('[ERROR]', error);
-      api.sendMessage('⛔|𝗘𝗿𝗿𝗼𝗿\n━━━━━━━━━━━━\n\nSorry, an error occurred while processing the command.', event.threadID);
-    });
-
-  } catch (error) {
-    console.error('[ERROR]', error);
-    api.sendMessage('⛔|𝗘𝗿𝗿𝗼𝗿\n━━━━━━━━━━━━\n\nSorry, an error occurred while processing the command.', event.threadID);
-  }
+	 api.sendMessage(message, event.threadID, () => {
+		fs.unlinkSync(filePath);
+	 });
+	});
+ } catch (error) {
+	console.error('[ERROR]', error);
+	api.sendMessage('An error occurred while processing the command.', event.threadID);
+ }
 };

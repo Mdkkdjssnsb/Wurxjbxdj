@@ -5,7 +5,7 @@ module.exports.config = {
  role: 2,
  aliases: ["approve"],
 cooldown: 0,
-hasPrefix: false,
+hasPrefix: true,
   usage: "",
 };
 

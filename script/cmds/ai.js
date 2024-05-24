@@ -11,10 +11,10 @@ module.exports.config = {
   name: "orochi",
   version: 1.0,
   credits: "ArYAN | Orochi",
-  description: "ask an questios to Orochi Ai",
+  description: "Ask an questios to 𝖢𝗁𝖺𝗍𝖦𝖯𝖳",
   hasPrefix: true,
   usages: "{pn} [prompt]",
-  aliases: ["chi"],
+  aliases: ["ask", "gpt"],
   cooldown: 0,
 };
 

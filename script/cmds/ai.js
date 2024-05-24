@@ -8,11 +8,11 @@ const fonts = {
 const axios = require('axios');
 
 module.exports.config = {
-  name: "orochi",
+  name: "ChatGPT",
   version: 1.0,
   credits: "ArYAN | Orochi",
   description: "Ask an questios to 𝖢𝗁𝖺𝗍𝖦𝖯𝖳",
-  hasPrefix: true,
+  hasPrefix: false,
   usages: "{pn} [prompt]",
   aliases: ["ask", "gpt"],
   cooldown: 0,

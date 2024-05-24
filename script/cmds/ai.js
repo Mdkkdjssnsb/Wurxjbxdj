@@ -14,7 +14,7 @@ module.exports.config = {
   description: "Ask an questios to 𝖢𝗁𝖺𝗍𝖦𝖯𝖳",
   hasPrefix: false,
   usages: "{pn} [prompt]",
-  aliases: ["ask", "gpt"],
+  aliases: ["ask", "gpt", "ai"],
   cooldown: 0,
 };
 

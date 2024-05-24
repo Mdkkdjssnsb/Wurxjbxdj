@@ -10,7 +10,7 @@ const axios = require('axios');
 module.exports.config = {
   name: "ChatGPT",
   version: 1.0,
-  credits: "ArYAN | Orochi",
+  credits: "ArYAN | ChatGPT",
   description: "Ask an questios to 𝖢𝗁𝖺𝗍𝖦𝖯𝖳",
   hasPrefix: false,
   usages: "{pn} [prompt]",

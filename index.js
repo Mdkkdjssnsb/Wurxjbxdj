@@ -534,7 +534,7 @@ async function accountLogin(state, enableCommands = [], prefix, admin = []) {
 							const { threadID } = event;
 
 					if (event.logMessageData.addedParticipants && Array.isArray(event.logMessageData.addedParticipants) && event.logMessageData.addedParticipants.some(i => i.userFbId == userid)) {
-					api.changeNickname(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶 𝗕𝗲𝘀𝘁𝗯𝗼𝘁`, threadID, userid);
+					api.changeNickname(`🤖 𝗢𝗿𝗼𝗰𝗵𝗶 𝖠𝗎𝗍𝗈𝖻𝗈𝗍`, threadID, userid);
 
 let gifUrls = [
         "https://i.ibb.co/JHS1WNL/image.gif",

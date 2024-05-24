@@ -22,7 +22,7 @@ module.exports.run = async ({
     let translateThis, lang;
     if (event.type === "message_reply") {
       translateThis = event.messageReply.body;
-      lang = targetLanguage || 'tl';
+      lang = targetLanguage || 'en';
     } else {
       translateThis = content;
       lang = targetLanguage || 'en';
@@ -33,7 +33,7 @@ module.exports.run = async ({
       let text = '';
       retrieve[0].forEach(item => (item[0]) ? text += item[0] : '');
       const fromLang = (retrieve[2] === retrieve[8][0][0]) ? retrieve[2] : retrieve[8][0][0];
-      api.sendMessage(`👑 𝗧𝗿𝗮𝗻𝘀𝗹𝗮𝘁𝗶𝗼𝗻\n━━━━━━━━━━━\n\n${text}\n${fromLang} 𝐭𝐨 ${lang}`, event.threadID, event.messageID);
+      api.sendMessage(`👑 𝗧𝗿𝗮𝗻𝘀𝗹𝗮𝘁𝗶𝗼𝗻\n━━━━━━━━━━━\n\n${text}`, event.threadID, event.messageID);
     });
   } catch (error) {
     api.sendMessage(error.message, event.threadID, event.messageID);

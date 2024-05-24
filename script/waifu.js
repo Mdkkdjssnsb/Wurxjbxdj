@@ -5,7 +5,7 @@ module.exports.config = {
   name: 'waifu',
   version: '1.0.0',
   role: 0,
-  hasPrefix: false,
+  hasPrefix: true,
   aliases: ['hanime'],
   description: 'Get a random anime image',
   usage: "Anime [category-type]",

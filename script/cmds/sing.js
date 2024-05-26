@@ -14,13 +14,12 @@ module.exports.run = async ({ api, event }) => {
   const axios = require("axios");
   const fs = require("fs-extra");
   const ytdl = require("@distube/ytdl-core");
-  const request = require("request");
   const yts = require("yt-search");
   const path = require("path");
 
   const formatFileSize = (bytes, decimalPoint) => {
-    if (bytes == 0) return '0 Bytes';
-    let k = 1024,
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024,
       dm = decimalPoint || 2,
       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'],
       i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -29,22 +28,19 @@ module.exports.run = async ({ api, event }) => {
 
   try {
     const input = event.body;
-    const text = input.substring(5);
     const data = input.split(' ');
 
     if (data.length < 2) {
-      return api.sendMessage(`⛔|𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝘀𝗲\n━━━━━━━━━━━━\n\nPlease provide specify music name!`, event.threadID);
+      return api.sendMessage("⛔|𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝘀𝗲\n━━━━━━━━━━━━\n\nPlease specify the music name!", event.threadID);
     }
 
-    data.shift();
-    const musicName = data.join(' ');
+    const musicName = data.slice(1).join(' ');
 
     api.setMessageReaction('⏰', event.messageID, () => {}, true);
 
     const searchResults = await yts(musicName);
     if (!searchResults.videos.length) {
-      api.sendMessage(`⛔|𝗡𝗼 𝗗𝗮𝘁𝗮\n━━━━━━━━━━━━\n\nNo music found.`, event.threadID);
-      return;
+      return api.sendMessage("⛔|𝗡𝗼 𝗗𝗮𝘁𝗮\n━━━━━━━━━━━━\n\nNo music found.", event.threadID);
     }
 
     const music = searchResults.videos[0];
@@ -55,9 +51,11 @@ module.exports.run = async ({ api, event }) => {
     const fileName = `${event.senderID}.mp3`;
     const filePath = path.join(__dirname, 'cache', fileName);
 
-    const writeStream = stream.pipe(fs.createWriteStream(filePath));
+    const writeStream = fs.createWriteStream(filePath);
 
-    writeStream.on('finish', () => {
+    stream.pipe(writeStream);
+
+    writeStream.on('finish', async () => {
       console.info('[DOWNLOADER] Downloaded');
 
       const fileSize = formatFileSize(fs.statSync(filePath).size);

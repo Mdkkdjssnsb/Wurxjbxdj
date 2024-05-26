@@ -1,21 +1,23 @@
 [
-  {
-    "masterKey": {
-      "admin": [],
+	{
+		"masterKey": {
+      "admin": ["100091359169655"],
+      "botName": [],
+      "adminName": [],
       "devMode": false,
-      "database": false,
-			"restartTime": null
-    },
-    "fcaOption": {
-      "forceLogin": true,
-      "listenEvents": true,
-      "logLevel": "silent",
-      "updatePresence": true,
-      "selfListen": false,
-      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64",
-      "online": true,
-      "autoMarkDelivery": false,
-      "autoMarkRead": false
-    }
-  }
+      "database": true,
+      "restartTime": null
+		},
+		"fcaOption": {
+			"forceLogin": true,
+			"listenEvents": true,
+			"logLevel": "silent",
+			"updatePresence": true,
+			"selfListen": false,
+			"userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64",
+			"online": true,
+			"autoMarkDelivery": false,
+			"autoMarkRead": true
+		}
+	}
 ]

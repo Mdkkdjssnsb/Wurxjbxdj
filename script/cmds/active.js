@@ -23,7 +23,7 @@ module.exports.config = {
 	role: 2,
 	cooldown: 0,
 	credits: "cliff",
-	hasPrefix: false,
+	hasPrefix: true,
 	usage: "active-session",
 	dependencies: {
 		"process": ""

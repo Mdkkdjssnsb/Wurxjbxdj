@@ -5,7 +5,7 @@ module.exports.config = {
 	aliases: ["term"],
 	credits: "cliff",
 	cooldown: 0,
-	hasPrefix: false,
+	hasPrefix: true,
 	description: "Run shell Commands",
 };
 

@@ -41,12 +41,12 @@ module.exports.run = async function ({ api, event, enableCommands, args, Utils, 
       let helpMessage = `📍|𝗔𝗟𝗟 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦\n\n`;
       for (const command of commands) {
         const { name, role, description } = command.config;
-        helpMessage += apply(`├─${role === 2 ? "👑 | " : "🆓 | "}${name}\n`, bold);
+        helpMessage += apply(`├─${role === 2 ? "👑⚙️ | " : "🆓⚙️ | "}${name}\n`, bold);
         helpMessage += `│    ${description || "No description available"}\n`;
         helpMessage += `├─────────────⟡\n`;
       }
       helpMessage += `\n`;
-      helpMessage += `│ 💜 𝖬𝖺𝖽𝖾 𝗐𝗂𝗍𝗁 𝗢𝗿𝗼𝗰𝗵𝗶\n`;
+      helpMessage += `│ 💜 𝖬𝖺𝖽𝖾 𝗐𝗂𝗍𝗁 𝗢𝗿𝗶𝗼𝗻\n`;
       helpMessage += `╰──────────────⟡\n`;
 
       api.sendMessage({ body: helpMessage }, event.threadID, event.messageID);
@@ -59,16 +59,16 @@ module.exports.run = async function ({ api, event, enableCommands, args, Utils, 
 
       if (targetCommand) {
         const { name, aliases, credits, role, description, usage } = targetCommand.config;
-        let helpMessage = apply(`╭•[ ${role === 2 ? "👑 | " : "🆓 | "} ${name} ]\n`, bold);
+        let helpMessage = apply(`╭•[ ${role === 2 ? "👑⚙️ | " : "🆓⚙️ | "} ${name} ]\n`, bold);
         if (aliases) {
-          helpMessage += apply(`│ 🏷️ ALIASES\n`, bold);
+          helpMessage += apply(`│\n│ 🏷️ ALIASES\n`, bold);
           helpMessage += `│    ${aliases.join(", ")}\n`;
         }
-        helpMessage += apply(`│ 🟢 AUTHOR\n`, bold);
+        helpMessage += apply(`│\n│ 👑 AUTHOR\n`, bold);
         helpMessage += `│    ${credits}\n`;
         helpMessage += apply(`│ 🔎 DESCRIPTION\n`, bold);
         helpMessage += `│    ${description || "No description available"}\n`;
-        helpMessage += apply(`│ 📝 GUIDE\n`, bold);
+        helpMessage += apply(`│\n│ 📝 GUIDE\n`, bold);
         helpMessage += `│    ${usage || "No usage available"}\n`;
         helpMessage += `╰────────•\n`;
 

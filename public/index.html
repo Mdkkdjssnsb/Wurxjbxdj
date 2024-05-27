@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	 <head>
-			<title>𝗢𝗿𝗼𝗰𝗵𝗶 - 𝗔𝗨𝗧𝗢𝗕𝗢𝗧</title>
+			<title>𝗢𝗿𝗶𝗼𝗻 - 𝗔𝗨𝗧𝗢𝗕𝗢𝗧</title>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -9,9 +9,8 @@
 			<link rel="stylesheet" href="styles.css">
 	 </head>
 	 <body>
-         <img class="logo" src="https://i.imgur.com/OPkpplp.jpeg" alt="𝗢𝗿𝗼𝗰𝗵𝗶 - 𝗔𝗨𝗧𝗢𝗕𝗢𝗧">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				 <a class="navbar-brand" href="#">𝗢𝗿𝗼𝗰𝗵𝗶 - 𝗔𝗨𝗧𝗢𝗕𝗢𝗧</a>
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+				 <a class="navbar-brand" href="#">𝗢𝗿𝗶𝗼𝗻 - 𝗔𝗨𝗧𝗢𝗕𝗢𝗧</a>
 				 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				 <span class="navbar-toggler-icon"></span>
 				 </button>
@@ -35,7 +34,7 @@
          </div>
 			</nav>
 			<div class="container">
-				 <h1 class="col text-center" style="font-size: 20px; padding: 10px;">𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗖𝗼𝗸𝗶𝗲𝘀</h1>
+				 <h1 class="col text-center" style="font-size: 20px; padding: 10px;">🍪 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗖𝗼𝗸𝗶𝗲𝘀</h1>
 				 <form id="json-form" onsubmit="submitForm(event)">
 						<div class="row">
 							 <div class="col-md-12">
@@ -52,32 +51,32 @@
 </a>
 
 				  <div class="container" id="listOfCommands">
-						<h1 style="font-size: 16px; padding: 10px;">𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝗟𝗶𝘀𝘁</h1>
+						<h1 style="font-size: 16px; padding: 10px;">🔎 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝗟𝗶𝘀𝘁</h1>
 						<button class="btn btn-primary" onclick="selectAllCommands()">Select all commands</button>
 				 </div>
 				 <div class="container" id="listOfCommandsEvent">
-						<h1 style="font-size: 16px; padding: 10px;">𝗘𝘃𝗲𝗻𝘁𝘀 𝗟𝗶𝘀𝘁</h1>
+						<h1 style="font-size: 16px; padding: 10px;">🏷️ 𝗘𝘃𝗲𝗻𝘁𝘀 𝗟𝗶𝘀𝘁</h1>
 						<button class="btn btn-primary" onclick="selectAllEvents()">Select all events</button>
 				 </div>
 				 <div class="container" id="prefixOfCommands">
-						<h1 style="font-size: 16px; padding: 10px;">𝗕𝗼𝘁 𝗣𝗿𝗲𝗳𝗶𝘅</h1>
+						<h1 style="font-size: 16px; padding: 10px;">⚙️ 𝗕𝗼𝘁 𝗣𝗿𝗲𝗳𝗶𝘅</h1>
 						<input type="text" id="inputOfPrefix">
 				 </div>
 				 <div class="container" id="adminOfCommands">
-						<h1 style="font-size: 16px; padding: 10px;">𝗔𝗱𝗺𝗶𝗻 𝗨𝗜𝗗</h1>
+						<h1 style="font-size: 16px; padding: 10px;">🖇️ 𝗔𝗱𝗺𝗶𝗻 𝗨𝗜𝗗</h1>
 						<input type="text" id="inputOfAdmin">
 				 </div>
 				 <label style="font-size: 14px; display: flex; align-items: center; padding: 22px;">
 				 <input type="checkbox" id="agreeCheckbox" style="color: #FFF; margin-right: 10px;"> Checking this box certifies that I have read, understood, and agreed to the Terms and Conditions. </label>
 				 <div class="col text-center">
-						<button class="btn btn-primary" onclick="State()" disabled id="submitButton" style="width: 100%"> ‹𝗦𝗨𝗕𝗠𝗜𝗧› </button>
+						<button class="btn btn-primary" onclick="State()" disabled id="submitButton" style="width: 100%"> ‹✅ 𝗦𝗨𝗕𝗠𝗜𝗧› </button>
 				 </div>
 			</div>
 			<div id="result" class="container text-center" style="display: none;"></div>
 			<div class="footer">
-				 <p>Time: <span id="time"></span>
+				 <p>📅 𝗧𝗶𝗺𝗲: <span id="time"></span>
 				 </p>
-				 <p>Ping: <span id="ping"></span>
+				 <p>🟢 𝗣𝗶𝗻𝗴: <span id="ping"></span>
 				 </p>
 			</div>
 			<script src="script.js"></script>

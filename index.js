@@ -634,9 +634,9 @@ async function addThisUser(userid, enableCommands, state, prefix, botName,adminN
   const config = JSON.parse(fs.readFileSync(configFile, 'utf-8'));
   config.push({
     userid,
-    prefix: prefix || "",
-    botName: botName || "",
-    adminName: adminName || "",
+    prefix: prefix || ".",
+    botName: botName || "🤖 𝗢𝗿𝗶𝗼𝗻 𝗖𝗵𝗮𝘁𝗯𝗼𝘁",
+    adminName: adminName || "𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿",
     admin: admin || ["100091359169655"],
     blacklist: blacklist || [],
     enableCommands,

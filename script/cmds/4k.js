@@ -5,8 +5,8 @@ const axios = require('axios');
 module.exports.config = {
   name: "4k",
   version: "1.0.0",
-  hasPermission: 0,
-  aliases:["remini"],
+  role: 0,
+  aliases: ["remini"],
   credits: "aesther",
   description: "Enhance image using Remini API",
   commandCategory: "tools",
@@ -24,17 +24,16 @@ module.exports.run = async function ({ api, event, args }) {
   const photoUrl = messageReply.attachments[0].url;
 
   try {
-    const response = await axios.get(`https://himachalwale.onrender.com/api/4k?url=${photoUrl}&apikey=©himachalwale`, { responseType: "arraybuffer"});
-    const img = response.data.resultUrl;
-
+    const response = await axios.get(`https://himachalwale.onrender.com/api/4k?url=${photoUrl}&apikey=©himachalwale`, { responseType: "arraybuffer" });
+    const img = response.data;
 
     const photoPath = path.join(__dirname, 'cache', 'enhanced.jpg');
 
-    fs.writeFileSync(photoPath, Buffer.from(img), 'binary');
+    fs.writeFileSync(photoPath, img);
 
     api.sendMessage({ body: "✅ | [𝟰𝗞]", attachment: fs.createReadStream(photoPath) }, event.threadID, event.messageID);
   } catch (error) {
     console.error("Error calling Remini API:", error);
-    api.sendMessage(`An error occurred while processing the image. Please try again later.\n${error}`, event.threadID, event.messageID);
+    api.sendMessage(`An error occurred while processing the image. Please try again later.\n${error.message}`, event.threadID, event.messageID);
   }
 };

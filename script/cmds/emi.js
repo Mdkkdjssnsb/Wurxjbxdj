@@ -13,27 +13,38 @@ module.exports.config = {
     usages: "[Text]",
     cooldowns: 0,
 };
+
 module.exports.run = async function({ message, args, event }) {
     const text = args.join(" ");
     if (!text) {
-      return message.reply("Please provide a prompt.");
+        return message.reply("Please provide a prompt.");
     }
 
     let prompt = text;
 
     try {
-      message.reply("generating your Imagination, please wait...").then((info) => { id = info.messageID });
+        message.reply("Generating your imagination, please wait...").then((info) => { id = info.messageID });
 
-      const API = `https://himachalwale.onrender.com/api/emi?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`;
-      const imageStream = fs.createReadStream(API);
+        const API = `https://himachalwale.onrender.com/api/emi?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`;
 
-      return message.reply({
-        body: `🖼️`,
-        attachment: imageStream
-      });
+        // Fetch the image data from the API
+        const response = await axios.get(API, { responseType: 'arraybuffer' });
+        const imageBuffer = Buffer.from(response.data, 'binary');
+
+        // Create a temporary file path
+        const tempImagePath = path.join(__dirname, 'tempImage.jpg');
+        fs.writeFileSync(tempImagePath, imageBuffer);
+
+        // Send the image as an attachment
+        await message.reply({
+            body: `🖼️`,
+            attachment: fs.createReadStream(tempImagePath)
+        });
+
+        // Clean up the temporary file
+        fs.unlinkSync(tempImagePath);
     } catch (error) {
-      console.error(error);
-      message.reply("Failed to generate your imagination.");
+        console.error(error);
+        message.reply("Failed to generate your imagination.");
     }
-  }
 };

@@ -7,6 +7,7 @@ module.exports.config = {
     hasPrefix: true,
     commandCategory: "Search",
     usages: "[Text]",
+    aliases: ["pin"],
     cooldowns: 0,
 };
 module.exports.run = async function({ api, event, args }) {

@@ -25,8 +25,8 @@ module.exports.run = async function ({ api, event, args }) {
       await api.sendMessage("🤖 𝗔𝗿𝗰𝗵𝗲𝗱\n━━━━━━━━━━━━━━\n\n𝖧𝖾𝗅𝗅𝗈! 𝖧𝗈𝗐 𝖼𝖺𝗇 𝗂 𝖺𝗌𝗌𝗂𝗌𝗍 𝗒𝗈𝗎 𝗍𝗈𝖽𝖺𝗒 ?", event.threadID, event.messageID);
       return;
     }
-    const response = await axios.get(`https://himachalwale.onrender.com/ask/arched?prompt=${encodeURIComponent(prompt)}&apikey=©himachalwale`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://aryanapiz.onrender.com/api/archedai?prompt=${encodeURIComponent(prompt)}`);
+    const answer = response.data.fullResponse;
 
     let formattedAnswer = "";
     for (let char of answer) {
@@ -37,7 +37,7 @@ module.exports.run = async function ({ api, event, args }) {
       }
     }
 
-    await api.sendMessage(`🤖 𝗔𝗿𝗰𝗵𝗲𝗱\n━━━━━━━━━━━━━\n\n${formattedAnswer}`, event.threadID, event.messageID);
+    await api.sendMessage(`${formattedAnswer}`, event.threadID, event.messageID);
   } catch (error) {
     console.error("Error:", error.message);
   }

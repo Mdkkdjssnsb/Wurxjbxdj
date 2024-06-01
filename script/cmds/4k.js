@@ -1,4 +1,4 @@
-const a = require('axios');
+const axios = require('axios');
 const tinyurl = require('tinyurl');
 const fs = require('fs');
 const path = require('path');
@@ -40,23 +40,34 @@ module.exports.run = async function ({ api, event, args }) {
 
     try {
       const url = await tinyurl.shorten(imageUrl);
-      const response = await a.get(`https://aryan-apis.onrender.com/api/4k?url=${url}`);
+      const response = await axios.get(`https://aryanapiz.onrender.com/api/4k?url=${url}`);
 
       api.sendMessage("Processing your request, please wait.......", event.threadID);
 
       const resultUrl = response.data.resultUrl;
-      const imageData = await a.get(resultUrl, { responseType: 'stream' });
+      const imageData = await axios.get(resultUrl, { responseType: 'stream' });
 
-      api.sendMessage(
-        {
-          body: "🖼️ 𝟰𝗞 𝗜𝗠𝗔𝗚𝗘\n━━━━━━━━━━━━━━━\n\n𝖧𝖾𝗋𝖾 𝗂𝗌 𝗒𝗈𝗎𝗋 𝗎𝗉𝗅𝗈𝖺𝖽𝖾𝖽 𝗂𝗆𝖺𝗀𝖾𝗌.",
-          attachment: imageData.data
-        },
-        event.threadID
-      );
+      const tempFilePath = path.join(__dirname, 'temp_image.jpg');
+      const writer = fs.createWriteStream(tempFilePath);
+      imageData.data.pipe(writer);
+
+      writer.on('finish', () => {
+        const attachment = fs.createReadStream(tempFilePath);
+        api.sendMessage(
+          {
+            body: "🖼️ 𝟰𝗞 𝗜𝗠𝗔𝗚𝗘\n━━━━━━━━━━━━━━━\n\n𝖧𝖾𝗋𝖾 𝗂𝗌 𝗒𝗈𝗎𝗋 𝗎𝗉𝗅𝗈𝖺𝖽𝖾𝖽 𝗂𝗆𝖺𝗀𝖾𝗌.",
+            attachment: attachment
+          },
+          event.threadID,
+          () => fs.unlinkSync(tempFilePath) // Clean up temp file after sending
+        );
+      });
+
+      writer.on('error', (error) => {
+        api.sendMessage("❌ | Error writing image file: " + error.message, event.threadID);
+      });
 
     } catch (error) {
       api.sendMessage("❌ | Error: " + error.message, event.threadID);
     }
-  }
 };

@@ -1,13 +1,14 @@
+const a = require('axios');
+const tinyurl = require('tinyurl');
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
 
 module.exports.config = {
   name: "4k",
   version: "1.0.0",
   role: 0,
   aliases: ["remini"],
-  credits: "aesther",
+  credits: "ARYAN",
   description: "Enhance image using Remini API",
   commandCategory: "tools",
   usages: "[ reply a photo ]",
@@ -15,25 +16,47 @@ module.exports.config = {
 };
 
 module.exports.run = async function ({ api, event, args }) {
-  const messageReply = event.messageReply;
+    let imageUrl;
 
-  if (!messageReply || !messageReply.attachments || messageReply.attachments.length === 0 || messageReply.attachments[0].type !== "photo") {
-    return api.sendMessage("❌ | Reply must be an image.", event.threadID, event.messageID);
-  }
+    if (event.type === "message_reply") {
+      const replyAttachment = event.messageReply.attachments[0];
 
-  const photoUrl = messageReply.attachments[0].url;
+      if (["photo", "sticker"].includes(replyAttachment?.type)) {
+        imageUrl = replyAttachment.url;
+      } else {
+        return api.sendMessage(
+          { body: "❌ | Reply must be an image." },
+          event.threadID
+        );
+      }
+    } else if (args[0]?.match(/(https?:\/\/.*\.(?:png|jpg|jpeg))/g)) {
+      imageUrl = args[0];
+    } else {
+      return api.sendMessage(
+        { body: "❌ | Reply to an image." },
+        event.threadID
+      );
+    }
 
-  try {
-    const response = await axios.get(`https://himachalwale.onrender.com/api/4k?url=${photoUrl}&apikey=©himachalwale`, { responseType: "arraybuffer" });
-    const img = response.data;
+    try {
+      const url = await tinyurl.shorten(imageUrl);
+      const response = await a.get(`https://aryan-apis.onrender.com/api/4k?url=${url}`);
 
-    const photoPath = path.join(__dirname, 'cache', 'enhanced.jpg');
+      api.sendMessage("Processing your request, please wait.......", event.threadID);
 
-    fs.writeFileSync(photoPath, img);
+      const resultUrl = response.data.resultUrl;
+      const imageData = await a.get(resultUrl, { responseType: 'stream' });
 
-    api.sendMessage({ body: "✅ | [𝟰𝗞]", attachment: fs.createReadStream(photoPath) }, event.threadID, event.messageID);
-  } catch (error) {
-    console.error("Error calling Remini API:", error);
-    api.sendMessage(`An error occurred while processing the image. Please try again later.\n${error.message}`, event.threadID, event.messageID);
+      api.sendMessage(
+        {
+          body: "🖼️ 𝟰𝗞 𝗜𝗠𝗔𝗚𝗘\n━━━━━━━━━━━━━━━\n\n𝖧𝖾𝗋𝖾 𝗂𝗌 𝗒𝗈𝗎𝗋 𝗎𝗉𝗅𝗈𝖺𝖽𝖾𝖽 𝗂𝗆𝖺𝗀𝖾𝗌.",
+          attachment: imageData.data
+        },
+        event.threadID
+      );
+
+    } catch (error) {
+      api.sendMessage("❌ | Error: " + error.message, event.threadID);
+    }
   }
 };

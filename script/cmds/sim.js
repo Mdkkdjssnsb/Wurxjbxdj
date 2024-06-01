@@ -18,9 +18,8 @@ module.exports.run = async function({ api, event, args }) {
         return;
     }
     try {  
-        const content = encodeURIComponent(input);
-        const response = await axios.get(`https://simsimi.fun/api/v2/?mode=talk&lang=ph&message=${content}&filter=false`);
-        const responseData = response.data;
+        const response = await axios.get(`https://aryanapiz.onrender.com/api/sim?chat=${input}&lang=en`);
+        const responseData = response.data.answer;
         if (responseData.error) {
             api.sendMessage("An error occurred. Please try again later.", event.threadID, event.messageID);
         } else {

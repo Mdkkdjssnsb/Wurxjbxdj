@@ -2,7 +2,7 @@ module.exports.config = {
     name: "pinterest",
     version: "1.0.0",
     role: 0,
-    credits: "Joshua Sy",
+    credits: "ArYAN",
     description: "Image search",
     hasPrefix: true,
     commandCategory: "Search",
@@ -18,8 +18,8 @@ module.exports.run = async function({ api, event, args }) {
     if(keySearch.includes("-") == false) return api.sendMessage('Please enter in the format, example: pinterest Coco Martin - 10 (20 limit only)', event.threadID, event.messageID)
     const keySearchs = keySearch.substr(0, keySearch.indexOf('-'))
     const numberSearch = keySearch.split("-").pop() || 6
-    const res = await axios.get(`https://himachalwale.onrender.com/api/pinterest2?search=${encodeURIComponent(keySearchs)}&keysearch=${numberSearch}&apikey=©himachalwale`);
-    const data = res.data.result;
+    const res = await axios.get(`https://aryanapiz.onrender.com/api/pinterest?query=${encodeURIComponent(keySearchs)}&limits=${numberSearch}`);
+    const data = res.data;
     var num = 0;
     var imgData = [];
     for (var i = 0; i < parseInt(numberSearch); i++) {

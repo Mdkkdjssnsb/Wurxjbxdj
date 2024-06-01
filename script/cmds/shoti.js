@@ -1,9 +1,13 @@
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+
 module.exports.config = {
     name: "shoti",
     version: "1.0.0",
-    credits: "Marjhxn",
+    credits: "ArYAN",
     description: "Generate random tiktok girl videos",
-    hasPermssion: 0,
+    role: 0,
     commandCategory: "other",
     usage: "[shoti]",
     cooldowns: 5,
@@ -16,44 +20,35 @@ module.exports.run = async function({
     event
 }) {
     try {
-        const axios = require("axios");
-        const request = require("request");
-        const fs = require("fs");
-        api.sendMessage(`⏱️ | Sending Shoti Please Wait...`, event.threadID, event.messageID);
-        let response = await axios.post(
-            "https://shoti-server-5b293365cb713b.replit.app/api/v1/get", {
-                apikey: "$shoti-1hmr2epbp9p95ovcr68",
-            },
-        );
+      const response = await axios.get("https://aryanapiz.onrender.com/api/shoti");
+      const data = response.data.data;
+      const username = data.user.username || "@user_unknown";
+      const nickname = data.user.nickname || "@unknown_nickname";
+      const region = data.region || "unknown region";
+      const duration = data.duration || "unknown duration";
+      const title = data.title || "unknown title";
+      const userID = data.user.userID || "unknown userID";
 
-        const userInfo = response.data.data.user;
-        const videoInfo = response.data.data;
-        const title = videoInfo.title;
-        const durations = videoInfo.duration;
-        const region = videoInfo.region;
-        const username = userInfo.username;
-        const nickname = userInfo.nickname;
-
-        var file = fs.createWriteStream(__dirname + "/cache/temp_video.mp4");
-        var rqs = request(encodeURI(response.data.data.url));
-        rqs.pipe(file);
-        file.on("finish", () => {
-            return api.sendMessage({
-                    body: `𝗛𝗘𝗥𝗘'𝗦 𝗬𝗢𝗨𝗥 𝗦𝗛𝗢𝗧𝗜 𝗩𝗜𝗗𝗘𝗢!\n𝖳𝗂𝗍𝗅𝖾: ${title}\n𝖴𝗌𝖾𝗋𝗇𝖺𝗆𝖾: @${username}\n𝖭𝗂𝖼𝗄𝗇𝖺𝗆𝖾: ${nickname}\n𝖣𝗎𝗋𝖺𝗍𝗂𝗈𝗇: ${durations}\n𝖱𝖾𝗀𝗂𝗈𝗇: ${region}`,
-                    attachment: fs.createReadStream(__dirname + "/cache/temp_video.mp4"),
-                },
-                event.threadID,
-                event.messageID,
-            );
+      const videoResponse = await axios.get(data.url, { responseType: "stream" });
+      const tempVideoPath = path.join(__dirname, "cache", `${Date.now()}.mp4`);
+      const writer = fs.createWriteStream(tempVideoPath);
+      videoResponse.data.pipe(writer);
+      
+      writer.on("finish", async () => {
+        const stream = fs.createReadStream(tempVideoPath);
+        await message.reply({
+          body: `Username: "${username}"\nNickname: "${nickname}"\nRegion: "${region}"\nDuration: "${duration}"\nTitle: "${title}"\nUserID: "${userID}"`,
+          attachment: stream,
         });
-        file.on("error", (err) => {
-            api.sendMessage(`Shoti Error: ${err}`, event.threadID, event.messageID);
+        api.setMessageReaction("✅", event.messageID, (err) => {}, true);
+        fs.unlink(tempVideoPath, (err) => {
+          if (err) console.error(err);
+          console.log(`Deleted ${tempVideoPath}`);
         });
+      });
     } catch (error) {
-        api.sendMessage(
-            "An error occurred while generating video:" + error,
-            event.threadID,
-            event.messageID,
-        );
+      console.error(error);
+      message.reply("Sorry, an error occurred while processing your request.");
     }
+  }
 };

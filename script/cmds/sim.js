@@ -18,7 +18,7 @@ module.exports.run = async function({ api, event, args }) {
         return;
     }
     try {  
-        const response = await axios.get(`https://aryanapiz.onrender.com/api/sim?chat=${input}&lang=en`);
+        const response = await axios.get(`https://itsaryanapis.onrender.com/api/sim?chat=${input}&lang=en`);
         const responseData = response.data.answer;
         if (responseData.error) {
             api.sendMessage("An error occurred. Please try again later.", event.threadID, event.messageID);

@@ -21,7 +21,7 @@ module.exports.run = async function({ api, event, args }) {
 
     if (args[0].toLowerCase() === "gen") {
       try {
-        const response = await axios.get("https://aryanapiz.onrender.com/api/tempmail/get");
+        const response = await axios.get("https://itsaryanapis.onrender.com/api/tempmail/get");
         const responseData = response.data.tempmail;
         api.sendMessage(`📮|𝗧𝗲𝗺𝗽𝗺𝗮𝗶𝗹\n━━━━━━━━━━━━━\n\n𝖧𝖾𝗋𝖾 𝗂𝗌 𝗒𝗈𝗎𝗋 𝗀𝖾𝗇𝖾𝗋𝖺𝗍𝖾𝖽 𝗍𝖾𝗆𝗉𝗆𝖺𝗂𝗅\n\n📍|𝗘𝗺𝗮𝗶𝗹\n➤ ${responseData}`, event.threadID, event.messageID);
       } catch (error) {
@@ -31,7 +31,7 @@ module.exports.run = async function({ api, event, args }) {
     } else if (args[0].toLowerCase() === "inbox" && args.length === 2) {
       const email = args[1];
       try {
-        const response = await axios.get(`https://aryanapiz.onrender.com/api/tempmail/inbox?email=${encodeURIComponent(email)}`);
+        const response = await axios.get(`https://itsaryanapis.onrender.com/api/tempmail/inbox?email=${encodeURIComponent(email)}`);
         const data = response.data;
         if (data.length === 0) {
           api.sendMessage("❌| No messages found in the inbox. Please check back later.", event.threadID, event.messageID);

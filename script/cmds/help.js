@@ -46,7 +46,7 @@ module.exports.run = async function ({ api, event, enableCommands, args, Utils, 
         helpMessage += `├─────────────⟡\n`;
       }
       helpMessage += `\n`;
-      helpMessage += `│ 💜 𝖬𝖺𝖽𝖾 𝗐𝗂𝗍𝗁 𝗢𝗿𝗼𝗰𝗵𝗶\n`;
+      helpMessage += `│ 💜 𝖬𝖺𝖽𝖾 𝗐𝗂𝗍𝗁 𝗔𝘂𝘁𝗼𝗯𝗼𝘁\n`;
       helpMessage += `╰──────────────⟡\n`;
 
       api.sendMessage({ body: helpMessage }, event.threadID, event.messageID);

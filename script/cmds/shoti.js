@@ -17,7 +17,7 @@ module.exports.config = {
 
 module.exports.run = async function ({ api, event }) {
   try {
-    const response = await axios.get("https://aryanapiz.onrender.com/api/shoti");
+    const response = await axios.get("https://itsaryanapis.onrender.com/api/shoti");
     const data = response.data.data;
     const username = data.user.username || "@user_unknown";
     const nickname = data.user.nickname || "@unknown_nickname";

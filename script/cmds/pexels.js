@@ -18,7 +18,7 @@ module.exports.run = async function({ api, event, args }) {
     if(keySearch.includes("-") == false) return api.sendMessage('Please enter in the format, example: pinterest Coco Martin - 10 (20 limit only)', event.threadID, event.messageID)
     const keySearchs = keySearch.substr(0, keySearch.indexOf('-'))
     const numberSearch = keySearch.split("-").pop() || 6
-    const res = await axios.get(`https://aryanapiz.onrender.com/api/pexels?query=${encodeURIComponent(keySearchs)}&keysearch=${numberSearch}`);
+    const res = await axios.get(`https://itsaryanapis.onrender.com/api/pexels?query=${encodeURIComponent(keySearchs)}&keysearch=${numberSearch}`);
     const data = res.data.result;
     var num = 0;
     var imgData = [];

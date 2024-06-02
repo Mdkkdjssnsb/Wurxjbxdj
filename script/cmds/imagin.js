@@ -7,7 +7,7 @@ module.exports.config ={
 		usage: "{pn} [prompt]",
 		credits: "Samir Œ",
 		description: "Generate images based on prompts",
-		hasPrefix: false,
+		hasPrefix: true,
 };
 
 

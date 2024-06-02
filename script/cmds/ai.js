@@ -73,7 +73,7 @@ const models = [
 ];
 
 const defaultModel = "gpt-4";
-const apiEndpoint = "https://aryanapiz.onrender.com";
+const apiEndpoint = "https://itsaryanapis.onrender.com";
 
 module.exports.config = {
   name: "ai",

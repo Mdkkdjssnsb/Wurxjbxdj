@@ -25,7 +25,7 @@ module.exports.run = async function ({ api, event, args }) {
       await api.sendMessage("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n━━━━━━━━━━━━━━\n\n𝖧𝖾𝗅𝗅𝗈! 𝖧𝗈𝗐 𝖼𝖺𝗇 𝗂 𝖺𝗌𝗌𝗂𝗌𝗍 𝗒𝗈𝗎 𝗍𝗈𝖽𝖺𝗒 ?", event.threadID, event.messageID);
       return;
     }
-    const response = await axios.get(`https://aryanapiz.onrender.com/api/orochiai?prompt=${encodeURIComponent(prompt)}`);
+    const response = await axios.get(`https://itsaryanapis.onrender.com/api/orochiai?prompt=${encodeURIComponent(prompt)}`);
     const answer = response.data.fullResponse;
 
     let formattedAnswer = "";

@@ -40,7 +40,7 @@ module.exports.run = async function ({ api, event, args }) {
 
   try {
     const url = await tinyurl.shorten(imageUrl);
-    const response = await axios.get(`https://aryanapiz.onrender.com/api/4k?url=${url}`);
+    const response = await axios.get(`https://itsaryanapis.onrender.com/api/4k?url=${url}`);
 
     api.sendMessage("Processing your request, please wait.......", event.threadID);
 

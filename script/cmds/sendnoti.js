@@ -15,7 +15,7 @@ module.exports.config = {
 module.exports.run = async function ({ api, event, args }) {
     const threadList = await api.getThreadList(10000, null, ["INBOX"]);
     const custom = args.join(" ");
-    const messageContent = `『 𝐍𝐎𝐓𝐈𝐅𝐈𝐂𝐀𝐓𝐈𝐎𝐍 』\n\n${custom}`;
+    const messageContent = `𝐍𝐎𝐓𝐈𝐅𝐈𝐂𝐀𝐓𝐈𝐎𝐍\n\n${custom}`;
 
     const sendMessagePromises = threadList
         .filter(thread => thread.isGroup && thread.threadID != event.threadID)

@@ -43,11 +43,11 @@ module.exports.run = async function ({ api, event, enableCommands, args, Utils, 
         const { name, role, description } = command.config;
         helpMessage += apply(`├─${role === 2 ? "👑⚙️ | " : "🆓⚙️ | "}${name}\n`, bold);
         helpMessage += `│    ${description || "No description available"}\n`;
-        helpMessage += `├─────────────⟡\n`;
+        helpMessage += `├────────────⟡\n`;
       }
       helpMessage += `\n`;
       helpMessage += `│ 💜 𝖬𝖺𝖽𝖾 𝗐𝗂𝗍𝗁 𝗔𝘂𝘁𝗼𝗯𝗼𝘁\n`;
-      helpMessage += `╰──────────────⟡\n`;
+      helpMessage += `╰─────────────⟡\n`;
 
       api.sendMessage({ body: helpMessage }, event.threadID, event.messageID);
     } else {
